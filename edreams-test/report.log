@@ -1,0 +1,409 @@
+This is LuaTeX, Version 1.10.1 (MiKTeX 2.9.7140 64-bit)  (format=lualatex 2019.8.13)  13 MAY 2021 23:54
+ restricted system commands enabled.
+**report.tex
+(./report.tex
+LaTeX2e <2018-12-01>
+Lua module: luaotfload-main 2019-07-04 2.98 luaotfload entry point
+Lua module: luaotfload-init 2019-07-04 2.98 luaotfload submodule / initializatio
+n
+Lua module: lualibs 2019-07-04 2.66 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2019-07-04 2.66 ConTeXt Lua libraries -- extended c
+ollection.
+Lua module: luaotfload-log 2019-07-04 2.98 luaotfload submodule / logging
+Lua module: luaotfload-parsers 2019-07-04 2.98 luaotfload submodule / filelist
+Lua module: luaotfload-configuration 2019-07-04 2.98 luaotfload submodule / conf
+ig file reader
+luaotfload | conf : Root cache directory is C:/Users/Oliver/AppData/Local/MiKTeX
+/2.9/luatex-cache/generic/names.
+luaotfload | init : Loading fontloader “fontloader-2019-07-04.lua” from kpse
+-resolved path “C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/luatex/l
+uaotfload/fontloader-2019-07-04.lua”.
+Lua-only attribute luaotfload@state = 2
+Lua-only attribute luaotfload@noligature = 3
+Lua-only attribute luaotfload@syllabe = 4
+luaotfload | init : Context OpenType loader version “3.108”
+Inserting `luaotfload.node_processor' at position 1 in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' at position 1 in `hpack_filter'.
+Lua module: luaotfload-loaders 2019-07-04 2.98 luaotfload submodule / callback h
+andling
+Inserting `luaotfload.define_font' at position 1 in `define_font'.
+Lua module: luaotfload-database 2019-07-04 2.98 luaotfload submodule / database
+Lua module: luaotfload-colors 2019-07-04 2.98 luaotfload submodule / color
+Lua-only attribute luaotfload_color_attribute = 5
+Lua module: luaotfload-resolvers 2019-07-04 2.98 luaotfload submodule / resolver
+s
+luaotfload | conf : Root cache directory is C:/Users/Oliver/AppData/Local/MiKTeX
+/2.9/luatex-cache/generic/names.
+Lua module: luaotfload-features 2019-07-04 2.98 luaotfload submodule / features
+Lua module: luaotfload-letterspace 2019-07-04 2.98 luaotfload submodule / color
+Lua module: luaotfload-embolden 2019-07-04 2.98 luaotfload submodule / color
+Lua module: luaotfload-notdef 2019-07-04 2.98 luaotfload submodule / color
+Lua module: luaotfload-auxiliary 2019-07-04 2.98 luaotfload submodule / auxiliar
+y functions
+Inserting `luaotfload.aux.set_sscale_dimens' at position 1 in `luaotfload.patch_
+font'.
+Inserting `luaotfload.aux.patch_cambria_domh' at position 2 in `luaotfload.patch
+_font'.
+Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_fon
+t_unsafe'.
+Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
+'.
+Inserting `luaotfload.aux.set_xheight' at position 4 in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' at position 5 in `luaotfload.patch_font'
+.
+luaotfload | main : initialization completed in 2.383 seconds
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/article.cls"
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/size11.clo"
+File: size11.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from C:/Users/Oliver/AppData/Local/
+MiKTeX/2.9/luatex-cache/generic/names/luaotfload-names.luc)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/graphicx
+.sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/keyval.s
+ty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/graphics
+.sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/trig.sty
+"
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics-cfg/grap
+hics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 99.
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics-def/luat
+ex.def"
+File: luatex.def 2018/01/08 v1.0l Graphics/color driver for luatex
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/color.st
+y"
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics-cfg/colo
+r.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: luatex.def on input line 147.
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/generic/soul/soul.sty"
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks15
+\SOUL@lasttoken=\toks16
+\SOUL@cmds=\toks17
+\SOUL@buffer=\toks18
+\SOUL@token=\toks19
+\SOUL@spaceskip=\skip43
+\SOUL@ttwidth=\dimen105
+\SOUL@uldp=\dimen106
+\SOUL@ulht=\dimen107
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/tools/longtable.s
+ty"
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)+ FMi change
+\LTleft=\skip44
+\LTright=\skip45
+\LTpre=\skip46
+\LTpost=\skip47
+\LTchunksize=\count88
+\LTcapwidth=\dimen108
+\LT@head=\box27
+\LT@firsthead=\box28
+\LT@foot=\box29
+\LT@lastfoot=\box30
+\LT@cols=\count89
+\LT@rows=\count90
+\c@LT@tables=\count91
+\c@LT@chunks=\count92
+\LT@p@ftn=\toks20
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/booktabs/booktabs
+.sty"
+Package: booktabs 2019/10/08 v1.6180339 publication quality tables
+\heavyrulewidth=\dimen109
+\lightrulewidth=\dimen110
+\cmidrulewidth=\dimen111
+\belowrulesep=\dimen112
+\belowbottomsep=\dimen113
+\aboverulesep=\dimen114
+\abovetopsep=\dimen115
+\cmidrulesep=\dimen116
+\cmidrulekern=\dimen117
+\defaultaddspace=\dimen118
+\@cmidla=\count93
+\@cmidlb=\count94
+\@aboverulesep=\dimen119
+\@belowrulesep=\dimen120
+\@thisruleclass=\count95
+\@lastruleclass=\count96
+\@thisrulewidth=\dimen121
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/placeins/placeins
+.sty"
+Package: placeins 2005/04/18  v 2.2
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/multirow/multirow
+.sty"
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip48
+\multirow@cntb=\count97
+\multirow@dima=\skip49
+\bigstrutjot=\dimen122
+) ("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/url/url.sty"
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsmath/amsmath.s
+ty"
+Package: amsmath 2018/12/01 v2.17b AMS math features
+\@mathmargin=\skip50
+
+For additional information on amsmath, use the `?' option.
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsmath/amstext.s
+ty"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsmath/amsgen.st
+y"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks21
+\ex@=\dimen123
+))
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsmath/amsbsy.st
+y"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen124
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsmath/amsopn.st
+y"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count98
+LaTeX Info: Redefining \frac on input line 223.
+\uproot@=\count99
+\leftroot@=\count100
+LaTeX Info: Redefining \overline on input line 385.
+\classnum@=\count101
+\DOTSCASE@=\count102
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
+\Mathstrutbox@=\box31
+\strutbox@=\box32
+\big@size=\dimen125
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+\macc@depth=\count103
+\c@MaxMatrixCols=\count104
+\dotsspace@=\muskip11
+\c@parentequation=\count105
+\dspbrk@lvl=\count106
+\tag@help=\toks22
+\row@=\count107
+\column@=\count108
+\maxfields@=\count109
+\andhelp@=\toks23
+\eqnshift@=\dimen126
+\alignsep@=\dimen127
+\tagshift@=\dimen128
+\tagwidth@=\dimen129
+\totwidth@=\dimen130
+\lineht@=\dimen131
+\@envbody=\toks24
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks25
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsfonts/amssymb.
+sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsfonts/amsfonts
+.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+
+LaTeX Warning: Unused global option(s):
+    [amsmath,amssymb].
+
+(./report.aux)
+\openout1 = report.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/context/base/mkii/supp-
+pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count110
+\scratchdimen=\dimen132
+\scratchbox=\box33
+\nofMPsegments=\count111
+\nofMParguments=\count112
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count113
+\MPscratchDim=\dimen133
+\MPnumerator=\count114
+\makeMPintoPDFobject=\count115
+\everyMPtoPDFconversion=\toks27
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/epstopdf
+-base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/infwar
+err.sty"
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/grfext.s
+ty"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/kvdefi
+nekeys.sty"
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/ltxcmd
+s.sty"
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/oberdiek/kvoption
+s.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/kvsetk
+eys.sty"
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/etexcm
+ds.sty"
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/ifluat
+ex.sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX detected.
+))))
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/pdftex
+cmds.sty"
+Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO)
+
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/generic/oberdiek/ifpdf.
+sty"
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+\pdftexcmds@toks=\toks28
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 43
+8.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG
+,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 70.
+
+("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsfonts/umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 70.
+ ("C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsfonts/umsb.fd
+"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+<variance.png, id=1, 433.62pt x 289.08pt>
+File: variance.png Graphic file (type png)
+<use variance.png>
+Package luatex.def Info: variance.png  used on input line 90.
+(luatex.def)             Requested size: 288.0011pt x 192.01082pt.
+ [1
+
+{C:/Users/Oliver/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+<epoch_accuracy.pdf, id=11, 331.2375pt x 200.75pt>
+File: epoch_accuracy.pdf Graphic file (type pdf)
+<use epoch_accuracy.pdf>
+Package luatex.def Info: epoch_accuracy.pdf  used on input line 98.
+(luatex.def)             Requested size: 288.0011pt x 174.55305pt.
+<epoch_loss.pdf, id=12, 331.2375pt x 200.75pt>
+File: epoch_loss.pdf Graphic file (type pdf)
+<use epoch_loss.pdf>
+Package luatex.def Info: epoch_loss.pdf  used on input line 104.
+(luatex.def)             Requested size: 288.0011pt x 174.55305pt.
+
+[2<./variance.png>] [3<./epoch_accuracy.pdf><./epoch_loss.pdf>] [4]
+(./report.aux))
+
+Here is how much of LuaTeX's memory you used:
+ 3048 strings out of 494305
+ 100000,128383 words of node,token memory allocated
+ 500 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 2 glyph, 7 attribute, 53 glue_spec,
+ 7 attribute_list, 1 write nodes
+   avail lists: 2:267,3:62,4:25,5:183,6:15,7:2028,8:13,9:88,10:10,11:131
+ 7112 multiletter control sequences out of 65536+200000
+ 46 fonts using 3085607 bytes
+ 41i,7n,26p,753b,247s stack positions out of 5000i,500n,10000p,200000b,50000s
+<c:/users/oliver/appdata/local/programs/miktex 2.9/fonts/opentype/public/lm/lmro
+man10-italic.otf><c:/users/oliver/appdata/local/programs/miktex 2.9/fonts/openty
+pe/public/lm/lmroman10-bold.otf><c:/users/oliver/appdata/local/programs/miktex 2
+.9/fonts/opentype/public/lm/lmroman10-regular.otf><c:/users/oliver/appdata/local
+/programs/miktex 2.9/fonts/opentype/public/lm/lmroman12-bold.otf><c:/users/olive
+r/appdata/local/programs/miktex 2.9/fonts/opentype/public/lm/lmroman12-regular.o
+tf><c:/users/oliver/appdata/local/programs/miktex 2.9/fonts/opentype/public/lm/l
+mroman17-regular.otf><C:/Users/Oliver/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Oliver/AppData/Local/Programs/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Oliver/AppData/Local/Pro
+grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on report.pdf (4 pages, 108385 bytes).
+
+PDF statistics: 235 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 131072)
+ 1 words of extra memory for PDF output out of 10000 (max. 100000000)
+
