@@ -19,6 +19,7 @@
 .env.production.local
 /metadata
 /pipelines
+/pipeline-template
 
 npm-debug.log*
 yarn-debug.log*
