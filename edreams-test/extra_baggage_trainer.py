@@ -28,12 +28,40 @@ _LABEL_KEY = 'EXTRA_BAGGAGE'
 
 
 def _apply_preprocessing(raw_features, tft_layer):
-  transformed_features = tft_layer(raw_features)  
+  transformed_features = tft_layer(raw_features)
   if _LABEL_KEY in raw_features:
     transformed_label = transformed_features.pop(_LABEL_KEY)
     return transformed_features, transformed_label
   else:
     return transformed_features, None
+
+def _get_serve_tf_examples_fn(model, tf_transform_output):
+  
+  model.tft_layer = tf_transform_output.transform_features_layer()
+
+  @tf.function(input_signature=[
+      tf.TensorSpec(shape=[None], dtype=tf.string, name='examples')
+  ])
+  def serve_tf_examples_fn(serialized_tf_examples):
+    # Expected input is a string which is serialized tf.Example format.
+    feature_spec = tf_transform_output.raw_feature_spec()
+    print("****entro*****", feature_spec)
+    # Because input schema includes unnecessary fields like 'species' and
+    # 'island', we filter feature_spec to include required keys only.
+    required_feature_spec = {
+        k: v for k, v in feature_spec.items() if k in _FEATURE_KEYS
+    }
+    parsed_features = tf.io.parse_example(serialized_tf_examples,
+                                          required_feature_spec)
+
+    # Preprocess parsed input with transform operation defined in
+    # preprocessing_fn().
+    transformed_features, _ = _apply_preprocessing(parsed_features,
+                                                   model.tft_layer)
+    # Run inference with ML model.
+    return model(transformed_features)
+
+  return serve_tf_examples_fn
 
     
 def _input_fn(file_pattern: List[str],
@@ -53,6 +81,7 @@ def _input_fn(file_pattern: List[str],
     A dataset that contains (features, indices) tuple where features is a
       dictionary of Tensors, and indices is a single Tensor of label indices.
   """
+  
   dataset = data_accessor.tf_dataset_factory(
       file_pattern,
       dataset_options.TensorFlowDatasetOptions(
@@ -83,7 +112,7 @@ def _build_keras_model() -> tf.keras.Model:
 
   model = keras.Model(inputs=inputs, outputs=outputs)
   model.compile(
-      optimizer=keras.optimizers.Adam(1e-2),
+      optimizer=keras.optimizers.Adam(1e-3),
       loss=tf.keras.losses.BinaryCrossentropy(),
       metrics=[tf.keras.metrics.Accuracy()])
 
@@ -107,7 +136,6 @@ def run_fn(fn_args: FnArgs):
       batch_size=_TRAIN_BATCH_SIZE)  
 
   model = _build_keras_model()
-  print('*************', train_dataset)
   model.fit(
       train_dataset,
       steps_per_epoch=fn_args.train_steps,
@@ -116,4 +144,7 @@ def run_fn(fn_args: FnArgs):
 
   # The result of the training should be saved in `fn_args.serving_model_dir`
   # directory.
-  model.save(fn_args.serving_model_dir, save_format='tf')
+  signatures = {
+      'serving_default': _get_serve_tf_examples_fn(model, tf_transform_output),
+  }
+  model.save(fn_args.serving_model_dir, save_format='tf', signatures=signatures)
