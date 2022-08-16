@@ -45,7 +45,7 @@ def _get_serve_tf_examples_fn(model, tf_transform_output):
   def serve_tf_examples_fn(serialized_tf_examples):
     # Expected input is a string which is serialized tf.Example format.
     feature_spec = tf_transform_output.raw_feature_spec()
-    print("****entro*****", feature_spec)
+    
     # Because input schema includes unnecessary fields like 'species' and
     # 'island', we filter feature_spec to include required keys only.
     required_feature_spec = {
@@ -53,6 +53,8 @@ def _get_serve_tf_examples_fn(model, tf_transform_output):
     }
     parsed_features = tf.io.parse_example(serialized_tf_examples,
                                           required_feature_spec)
+
+    print("****entro*****", parsed_features)
 
     # Preprocess parsed input with transform operation defined in
     # preprocessing_fn().
