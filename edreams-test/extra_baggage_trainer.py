@@ -119,7 +119,6 @@ def _build_keras_model() -> tf.keras.Model:
   # The model below is built with Functional API, please refer to
   # https://www.tensorflow.org/guide/keras/overview for all API options.
   inputs = [keras.layers.Input(shape=(1,1), name=f) for f in _FEATURE_KEYS]
-  logging.log(logging.DEBUG, 'inputs: ', inputs )
   d = keras.layers.concatenate(inputs)
   for _ in range(2):
     d = keras.layers.Dense(8, activation='relu')(d)

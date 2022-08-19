@@ -20,7 +20,7 @@ def preprocessing_fn(inputs):
 
   _FEATURE_KEYS = ['DEPARTURE','ARRIVAL']
 
-  _VOCAB_FEATURE_KEYS = ['DEPARTURE','ARRIVAL','EXTRA_BAGGAGE']
+  _VOCAB_FEATURE_KEYS = ['DEPARTURE', 'ARRIVAL', 'EXTRA_BAGGAGE']
 
   _CATEGORICAL_FEATURE_KEYS = []
 
@@ -38,16 +38,17 @@ def preprocessing_fn(inputs):
   for key in _VOCAB_FEATURE_KEYS:
     # Build a vocabulary for this feature.
     outputs[key] = tft.compute_and_apply_vocabulary(
-            _fill_in_missing(inputs[key]),
+            inputs[key],
             top_k=_VOCAB_SIZE,
             num_oov_buckets=_OOV_SIZE)
 
   for key in _BUCKET_FEATURE_KEYS:
     outputs[key] = tft.bucketize(
-        _fill_in_missing(inputs[key]), _FEATURE_BUCKET_COUNT)
+              inputs[key], 
+              _FEATURE_BUCKET_COUNT)
 
   for key in _CATEGORICAL_FEATURE_KEYS:
-    outputs[key] = _fill_in_missing(inputs[key])  
+    outputs[key] = inputs[key]  
 
   return outputs  
     
@@ -62,7 +63,6 @@ def _fill_in_missing(x):
     A rank 1 tensor where missing values of `x` have been filled in.
   """
   if not isinstance(x, tf.sparse.SparseTensor):
-    print(f'{x} is not a sparseTensor')
     return x
 
   default_value = '' if x.dtype == tf.string else 0
