@@ -1,0 +1,339 @@
+feature {
+  name: "ADULTS"
+  type: INT
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "ARRIVAL"
+  type: BYTES
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "CHILDREN"
+  type: INT
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "DEPARTURE"
+  type: BYTES
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "DEVICE"
+  type: BYTES
+  domain: "DEVICE"
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+}
+feature {
+  name: "DISTANCE"
+  type: FLOAT
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "EXTRA_BAGGAGE"
+  type: BYTES
+  bool_domain {
+    true_value: "TRUE"
+    false_value: "FALSE"
+  }
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "GDS"
+  type: INT
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "HAUL_TYPE"
+  type: BYTES
+  domain: "HAUL_TYPE"
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "ID"
+  type: INT
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "INFANTS"
+  type: INT
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "NO_GDS"
+  type: INT
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "PRODUCT"
+  type: BYTES
+  domain: "PRODUCT"
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "SMS"
+  type: BYTES
+  bool_domain {
+    true_value: "TRUE"
+    false_value: "FALSE"
+  }
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "TIMESTAMP"
+  type: BYTES
+  domain: "TIMESTAMP"
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "TRAIN"
+  type: BYTES
+  bool_domain {
+    true_value: "TRUE"
+    false_value: "FALSE"
+  }
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "TRIP_TYPE"
+  type: BYTES
+  domain: "TRIP_TYPE"
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+feature {
+  name: "WEBSITE"
+  type: BYTES
+  domain: "WEBSITE"
+  presence {
+    min_fraction: 1.0
+    min_count: 1
+  }
+  shape {
+    dim {
+      size: 1
+    }
+  }
+}
+string_domain {
+  name: "DEVICE"
+  value: "COMPUTER"
+  value: "OTHER"
+  value: "SMARTPHONE"
+  value: "TABLET"
+}
+string_domain {
+  name: "HAUL_TYPE"
+  value: "CONTINENTAL"
+  value: "DOMESTIC"
+  value: "INTERCONTINENTAL"
+}
+string_domain {
+  name: "PRODUCT"
+  value: "DYNPACK"
+  value: "TRIP"
+}
+string_domain {
+  name: "TIMESTAMP"
+  value: "01/July"
+  value: "02/July"
+}
+string_domain {
+  name: "TRIP_TYPE"
+  value: "MULTI_DESTINATION"
+  value: "ONE_WAY"
+  value: "ROUND_TRIP"
+}
+string_domain {
+  name: "WEBSITE"
+  value: "EDAE"
+  value: "EDAR"
+  value: "EDAU"
+  value: "EDBR"
+  value: "EDCA"
+  value: "EDCH"
+  value: "EDCL"
+  value: "EDCN"
+  value: "EDCO"
+  value: "EDDE"
+  value: "EDEG"
+  value: "EDES"
+  value: "EDFR"
+  value: "EDGB"
+  value: "EDGR"
+  value: "EDHK"
+  value: "EDID"
+  value: "EDIN"
+  value: "EDIT"
+  value: "EDJP"
+  value: "EDMA"
+  value: "EDMX"
+  value: "EDNL"
+  value: "EDNZ"
+  value: "EDPE"
+  value: "EDPH"
+  value: "EDPT"
+  value: "EDRU"
+  value: "EDSG"
+  value: "EDTH"
+  value: "EDTR"
+  value: "EDUK"
+  value: "EDUS"
+  value: "EDVE"
+  value: "EDZA"
+  value: "GODE"
+  value: "GOES"
+  value: "GOFR"
+  value: "GOGB"
+  value: "GOIT"
+  value: "GONL"
+  value: "GOPT"
+  value: "OPAT"
+  value: "OPAU"
+  value: "OPCH"
+  value: "OPDE"
+  value: "OPDEC"
+  value: "OPFR"
+  value: "OPFRC"
+  value: "OPGB"
+  value: "OPIT"
+  value: "OPNL"
+  value: "OPPLC"
+  value: "OPUK"
+  value: "TLDK"
+  value: "TLFI"
+  value: "TLNO"
+  value: "TLSE"
+  value: "OPPL"
+  value: "TLDKC"
+}
