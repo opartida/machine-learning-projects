@@ -18,13 +18,18 @@ def preprocessing_fn(inputs):
   # Number of buckets used by tf.transform for encoding each feature.
   _FEATURE_BUCKET_COUNT = 10
 
-  _FEATURE_KEYS = ['DEPARTURE','ARRIVAL']
+  _FEATURE_KEYS = ['WEBSITE','GDS','DEPARTURE','ARRIVAL',
+      'ADULTS','CHILDREN','INFANTS','TRAIN','HAUL_TYPE',
+      'DISTANCE','DEVICE','TRIP_TYPE','PRODUCT','SMS','NO_GDS'
+  ]
 
-  _VOCAB_FEATURE_KEYS = ['DEPARTURE','ARRIVAL','EXTRA_BAGGAGE']
+  _VOCAB_FEATURE_KEYS = ['DEPARTURE','ARRIVAL', 'WEBSITE','GDS', 
+                        'TRAIN', 'TRIP_TYPE', 'DEVICE', 'SMS', 
+                        'NO_GDS', 'HAUL_TYPE', 'PRODUCT', 'EXTRA_BAGGAGE']
 
-  _CATEGORICAL_FEATURE_KEYS = []
+  _CATEGORICAL_FEATURE_KEYS = ['ADULTS','CHILDREN','INFANTS']
 
-  _DENSE_FLOAT_FEATURE_KEYS = []
+  _DENSE_FLOAT_FEATURE_KEYS = ['DISTANCE']
 
   _BUCKET_FEATURE_KEYS = []
 
@@ -49,9 +54,9 @@ def preprocessing_fn(inputs):
   for key in _CATEGORICAL_FEATURE_KEYS:
     outputs[key] = _fill_in_missing(inputs[key])  
 
-  return outputs  
-    
+  return outputs
 
+  
 def _fill_in_missing(x):
   """Replace missing values in a SparseTensor.
   Fills in missing values of `x` with '' or 0, and converts to a dense tensor.
@@ -62,7 +67,6 @@ def _fill_in_missing(x):
     A rank 1 tensor where missing values of `x` have been filled in.
   """
   if not isinstance(x, tf.sparse.SparseTensor):
-    print(f'{x} is not a sparseTensor')
     return x
 
   default_value = '' if x.dtype == tf.string else 0
