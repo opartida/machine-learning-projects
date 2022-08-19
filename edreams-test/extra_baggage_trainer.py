@@ -16,7 +16,7 @@ from tfx_bsl.tfxio import dataset_options
 _TRAIN_BATCH_SIZE = 20
 _EVAL_BATCH_SIZE = 10
 
-_FEATURE_KEYS = ['DEPARTURE', 'ARRIVAL']
+_FEATURE_KEYS = ['DEPARTURE', 'ADULTS', 'CHILDREN', 'INFANTS', 'ARRIVAL']
 
 _LABEL_KEY = 'EXTRA_BAGGAGE'
 
@@ -36,12 +36,18 @@ def _get_serve_rest_fn(model, tf_transform_output):
   @tf.function(input_signature=[
       tf.TensorSpec(shape=(None,1), dtype=tf.string, name='departure'),
       tf.TensorSpec(shape=(None,1), dtype=tf.string, name='arrival'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.int64, name='adults'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.int64, name='children'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.int64, name='infants'),
   ])
-  def serve_rest_fn(x0, x1):
+  def serve_rest_fn(x0, x1, x2, x3, x4):
     # Run inference with ML model.    
     transformed_features, _ = _apply_preprocessing({
                                                   'DEPARTURE': x0,
                                                   'ARRIVAL': x1,
+                                                  'ADULTS': x2,
+                                                  'CHILDREN': x3,
+                                                  'INFANTS': x4,
                                                   },
                                                    model.tft_layer)
     print(transformed_features)

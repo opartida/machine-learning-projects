@@ -18,11 +18,11 @@ def preprocessing_fn(inputs):
   # Number of buckets used by tf.transform for encoding each feature.
   _FEATURE_BUCKET_COUNT = 10
 
-  _FEATURE_KEYS = ['DEPARTURE','ARRIVAL']
+  _FEATURE_KEYS = ['DEPARTURE', 'ADULTS', 'CHILDREN', 'INFANTS', 'ARRIVAL']
 
   _VOCAB_FEATURE_KEYS = ['DEPARTURE', 'ARRIVAL', 'EXTRA_BAGGAGE']
 
-  _CATEGORICAL_FEATURE_KEYS = []
+  _CATEGORICAL_FEATURE_KEYS = ['ADULTS', 'CHILDREN', 'INFANTS']
 
   _DENSE_FLOAT_FEATURE_KEYS = []
 

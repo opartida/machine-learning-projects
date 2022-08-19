@@ -11,6 +11,7 @@ import json
 features = {
       "departure": ["22/July"],
       "arrival": ["22/July"],
+      "adults": [0],
     }
 
 data = {    
