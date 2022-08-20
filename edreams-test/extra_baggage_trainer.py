@@ -16,7 +16,20 @@ from tfx_bsl.tfxio import dataset_options
 _TRAIN_BATCH_SIZE = 20
 _EVAL_BATCH_SIZE = 10
 
-_FEATURE_KEYS = ['DEPARTURE', 'ADULTS', 'CHILDREN', 'INFANTS', 'ARRIVAL']
+_FEATURE_KEYS = ['DEPARTURE', 
+                 'ADULTS', 
+                 'CHILDREN', 
+                 'INFANTS', 
+                 'ARRIVAL', 
+                 'TRIP_TYPE', 
+                 'TRAIN',
+                 'GDS',
+                 'HAUL_TYPE',
+                 'NO_GDS',
+                 'WEBSITE',
+                 'PRODUCT',
+                 'SMS',
+                 'DISTANCE']
 
 _LABEL_KEY = 'EXTRA_BAGGAGE'
 
@@ -39,8 +52,17 @@ def _get_serve_rest_fn(model, tf_transform_output):
       tf.TensorSpec(shape=(None,1), dtype=tf.int64, name='adults'),
       tf.TensorSpec(shape=(None,1), dtype=tf.int64, name='children'),
       tf.TensorSpec(shape=(None,1), dtype=tf.int64, name='infants'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.string, name='trip_type'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.string, name='train'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.int64, name='gds'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.string, name='haul_type'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.int64, name='no_gds'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.string, name='website'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.string, name='product'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.string, name='sms'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.float64, name='distance'),
   ])
-  def serve_rest_fn(x0, x1, x2, x3, x4):
+  def serve_rest_fn(x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13):
     # Run inference with ML model.    
     transformed_features, _ = _apply_preprocessing({
                                                   'DEPARTURE': x0,
@@ -48,9 +70,18 @@ def _get_serve_rest_fn(model, tf_transform_output):
                                                   'ADULTS': x2,
                                                   'CHILDREN': x3,
                                                   'INFANTS': x4,
+                                                  'TRIP_TYPE': x5,
+                                                  'TRAIN': x6,
+                                                  'GDS': x7,
+                                                  'HAUL_TYPE': x8,
+                                                  'NO_GDS': x9,
+                                                  'WEBSITE': x10,
+                                                  'PRODUCT': x11,
+                                                  'SMS': x12,
+                                                  'DISTANCE': x13,
                                                   },
                                                    model.tft_layer)
-    print(transformed_features)
+    
     return model(transformed_features)
 
   return serve_rest_fn
@@ -107,7 +138,6 @@ def _input_fn(file_pattern: List[str],
       dataset_options.TensorFlowDatasetOptions(
           batch_size=batch_size),
       tf_transform_output.raw_metadata.schema).repeat()
-
   transform_layer = tf_transform_output.transform_features_layer()
   
   def apply_transform(raw_features):    
@@ -124,19 +154,20 @@ def _build_keras_model() -> tf.keras.Model:
   """
   # The model below is built with Functional API, please refer to
   # https://www.tensorflow.org/guide/keras/overview for all API options.
-  inputs = [keras.layers.Input(shape=(1,1), name=f) for f in _FEATURE_KEYS]
+  inputs = [keras.layers.Input(shape=(1,), name=f) for f in _FEATURE_KEYS]
   d = keras.layers.concatenate(inputs)
   for _ in range(2):
-    d = keras.layers.Dense(8, activation='relu')(d)
+    d = keras.layers.Dense(64, activation='relu')(d)
   outputs = keras.layers.Dense(1, activation='sigmoid')(d)
 
   model = keras.Model(inputs=inputs, outputs=outputs)
   model.compile(
-      optimizer=keras.optimizers.Adam(1e-3),
+      optimizer=keras.optimizers.Adam(1e-4),
       loss=keras.losses.BinaryCrossentropy(),
-      metrics=[keras.metrics.Accuracy()])
+      metrics=['accuracy'])
 
-  model.summary(print_fn=logging.info)
+  # model.summary(print_fn=logging.info)
+  print(model.summary())
   return model
 
 # TFX Trainer will call this function.
@@ -159,6 +190,7 @@ def run_fn(fn_args: FnArgs):
   model.fit(
       train_dataset,
       steps_per_epoch=fn_args.train_steps,
+      epochs=10,
       validation_steps=fn_args.eval_steps,
       callbacks=[tensorboard_callback])
 
