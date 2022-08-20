@@ -18,13 +18,34 @@ def preprocessing_fn(inputs):
   # Number of buckets used by tf.transform for encoding each feature.
   _FEATURE_BUCKET_COUNT = 10
 
-  _FEATURE_KEYS = ['DEPARTURE','ARRIVAL']
+  _FEATURE_KEYS = ['DEPARTURE', 
+                   'ADULTS', 
+                   'CHILDREN', 
+                   'INFANTS', 
+                   'ARRIVAL', 
+                   'TRIP_TYPE', 
+                   'TRAIN', 
+                   'GDS', 
+                   'HAUL_TYPE',
+                   'NO_GDS',
+                   'WEBSITE',
+                   'PRODUCT',
+                   'SMS',
+                   'DISTANCE']
 
-  _VOCAB_FEATURE_KEYS = ['DEPARTURE','ARRIVAL','EXTRA_BAGGAGE']
+  _VOCAB_FEATURE_KEYS = ['DEPARTURE', 
+                         'ARRIVAL', 
+                         'EXTRA_BAGGAGE', 
+                         'TRIP_TYPE', 
+                         'TRAIN', 
+                         'HAUL_TYPE',
+                         'WEBSITE',
+                         'PRODUCT',
+                         'SMS']
 
-  _CATEGORICAL_FEATURE_KEYS = []
+  _CATEGORICAL_FEATURE_KEYS = ['ADULTS', 'CHILDREN', 'INFANTS', 'GDS', 'NO_GDS']
 
-  _DENSE_FLOAT_FEATURE_KEYS = []
+  _DENSE_FLOAT_FEATURE_KEYS = ['DISTANCE']
 
   _BUCKET_FEATURE_KEYS = []
 
@@ -44,10 +65,11 @@ def preprocessing_fn(inputs):
 
   for key in _BUCKET_FEATURE_KEYS:
     outputs[key] = tft.bucketize(
-        _fill_in_missing(inputs[key]), _FEATURE_BUCKET_COUNT)
+              inputs[key], 
+              _FEATURE_BUCKET_COUNT)
 
   for key in _CATEGORICAL_FEATURE_KEYS:
-    outputs[key] = _fill_in_missing(inputs[key])  
+    outputs[key] = inputs[key]  
 
   return outputs  
     
@@ -62,12 +84,10 @@ def _fill_in_missing(x):
     A rank 1 tensor where missing values of `x` have been filled in.
   """
   if not isinstance(x, tf.sparse.SparseTensor):
-    print(f'{x} is not a sparseTensor')
     return x
 
   default_value = '' if x.dtype == tf.string else 0
-  return tf.squeeze(
-      tf.sparse.to_dense(
-          tf.SparseTensor(x.indices, x.values, [x.dense_shape[0], 1]),
-          default_value),
-      axis=1)
+  print('ENTRO********', x.dense_shape[0])
+  return tf.sparse.to_dense(
+          tf.SparseTensor(x.indices, x.values, (x.dense_shape[0], 1)),
+          default_value)

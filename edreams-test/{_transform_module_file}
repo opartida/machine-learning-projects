@@ -18,18 +18,13 @@ def preprocessing_fn(inputs):
   # Number of buckets used by tf.transform for encoding each feature.
   _FEATURE_BUCKET_COUNT = 10
 
-  _FEATURE_KEYS = ['WEBSITE','GDS','DEPARTURE','ARRIVAL',
-      'ADULTS','CHILDREN','INFANTS','TRAIN','HAUL_TYPE',
-      'DISTANCE','DEVICE','TRIP_TYPE','PRODUCT','SMS','NO_GDS'
-  ]
+  _FEATURE_KEYS = ['DEPARTURE', 'ADULTS', 'CHILDREN', 'INFANTS', 'ARRIVAL', 'TRIP_TYPE']
 
-  _VOCAB_FEATURE_KEYS = ['DEPARTURE','ARRIVAL', 'WEBSITE','GDS', 
-                        'TRAIN', 'TRIP_TYPE', 'DEVICE', 'SMS', 
-                        'NO_GDS', 'HAUL_TYPE', 'PRODUCT', 'EXTRA_BAGGAGE']
+  _VOCAB_FEATURE_KEYS = ['DEPARTURE', 'ARRIVAL', 'EXTRA_BAGGAGE', 'TRIP_TYPE']
 
-  _CATEGORICAL_FEATURE_KEYS = ['ADULTS','CHILDREN','INFANTS']
+  _CATEGORICAL_FEATURE_KEYS = ['ADULTS', 'CHILDREN', 'INFANTS']
 
-  _DENSE_FLOAT_FEATURE_KEYS = ['DISTANCE']
+  _DENSE_FLOAT_FEATURE_KEYS = []
 
   _BUCKET_FEATURE_KEYS = []
 
@@ -43,20 +38,21 @@ def preprocessing_fn(inputs):
   for key in _VOCAB_FEATURE_KEYS:
     # Build a vocabulary for this feature.
     outputs[key] = tft.compute_and_apply_vocabulary(
-            _fill_in_missing(inputs[key]),
+            inputs[key],
             top_k=_VOCAB_SIZE,
             num_oov_buckets=_OOV_SIZE)
 
   for key in _BUCKET_FEATURE_KEYS:
     outputs[key] = tft.bucketize(
-        _fill_in_missing(inputs[key]), _FEATURE_BUCKET_COUNT)
+              inputs[key], 
+              _FEATURE_BUCKET_COUNT)
 
   for key in _CATEGORICAL_FEATURE_KEYS:
-    outputs[key] = _fill_in_missing(inputs[key])  
+    outputs[key] = inputs[key]  
 
-  return outputs
+  return outputs  
+    
 
-  
 def _fill_in_missing(x):
   """Replace missing values in a SparseTensor.
   Fills in missing values of `x` with '' or 0, and converts to a dense tensor.
