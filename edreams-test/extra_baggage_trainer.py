@@ -13,8 +13,8 @@ from tfx.components.trainer.fn_args_utils import DataAccessor
 from tfx.components.trainer.fn_args_utils import FnArgs
 from tfx_bsl.tfxio import dataset_options
 
-_TRAIN_BATCH_SIZE = 20
-_EVAL_BATCH_SIZE = 10
+_TRAIN_BATCH_SIZE = 500
+_EVAL_BATCH_SIZE = 150
 
 _FEATURE_KEYS = ['DEPARTURE', 
                  'ADULTS', 
@@ -95,10 +95,8 @@ def _get_serve_tf_examples_fn(model, tf_transform_output):
   ])
   def serve_tf_examples_fn(serialized_tf_examples):
     # Expected input is a string which is serialized tf.Example format.
-    feature_spec = tf_transform_output.raw_feature_spec()
-    
-    # Because input schema includes unnecessary fields like 'species' and
-    # 'island', we filter feature_spec to include required keys only.
+    feature_spec = tf_transform_output.raw_feature_spec()    
+   
     required_feature_spec = {
         k: v for k, v in feature_spec.items() if k in _FEATURE_KEYS
     }
@@ -164,7 +162,7 @@ def _build_keras_model() -> tf.keras.Model:
   model.compile(
       optimizer=keras.optimizers.Adam(1e-4),
       loss=keras.losses.BinaryCrossentropy(),
-      metrics=['accuracy'])
+      metrics=[keras.metrics.Accuracy()])
 
   # model.summary(print_fn=logging.info)
   print(model.summary())
@@ -186,11 +184,16 @@ def run_fn(fn_args: FnArgs):
       tf_transform_output,
       batch_size=_TRAIN_BATCH_SIZE)  
 
+  eval_dataset = _input_fn(
+        fn_args.eval_files,
+        fn_args.data_accessor,
+        tf_transform_output,
+        batch_size=_EVAL_BATCH_SIZE)
+
   model = _build_keras_model()
   model.fit(
       train_dataset,
       steps_per_epoch=fn_args.train_steps,
-      epochs=10,
       validation_steps=fn_args.eval_steps,
       callbacks=[tensorboard_callback])
 
@@ -201,4 +204,5 @@ def run_fn(fn_args: FnArgs):
       'serving_default': _get_serve_tf_examples_fn(model, tf_transform_output),
       'serving_rest': _get_serve_rest_fn(model, tf_transform_output),
   }
+  
   model.save(fn_args.serving_model_dir, save_format='tf', signatures=signatures)

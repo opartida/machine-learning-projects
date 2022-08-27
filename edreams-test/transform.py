@@ -87,7 +87,8 @@ def _fill_in_missing(x):
     return x
 
   default_value = '' if x.dtype == tf.string else 0
-  print('ENTRO********', x.dense_shape[0])
-  return tf.sparse.to_dense(
-          tf.SparseTensor(x.indices, x.values, (x.dense_shape[0], 1)),
-          default_value)
+  return tf.squeeze(
+      tf.sparse.to_dense(
+          tf.SparseTensor(x.indices, x.values, [x.dense_shape[0], 1]),
+          default_value),
+      axis=1)
