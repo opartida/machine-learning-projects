@@ -1,6 +1,5 @@
 
 from typing import List
-from absl import logging
 import tensorflow_transform as tft
 from tensorflow import keras
 from tensorflow_transform.tf_metadata import schema_utils
@@ -14,15 +13,10 @@ from tfx.components.trainer.fn_args_utils import DataAccessor
 from tfx.components.trainer.fn_args_utils import FnArgs
 from tfx_bsl.tfxio import dataset_options
 
-logging.set_verbosity(logging.ERROR)  # Set default logging level.
-
 _TRAIN_BATCH_SIZE = 20
 _EVAL_BATCH_SIZE = 10
 
-_FEATURE_KEYS = ['WEBSITE','GDS','DEPARTURE','ARRIVAL',
-      'ADULTS','CHILDREN','INFANTS','TRAIN','HAUL_TYPE',
-      'DISTANCE','DEVICE','TRIP_TYPE','PRODUCT','SMS','NO_GDS'
-  ]
+_FEATURE_KEYS = ['DEPARTURE', 'ADULTS', 'CHILDREN', 'INFANTS', 'ARRIVAL', 'TRIP_TYPE']
 
 _LABEL_KEY = 'EXTRA_BAGGAGE'
 
@@ -40,20 +34,26 @@ def _get_serve_rest_fn(model, tf_transform_output):
   model.tft_layer = tf_transform_output.transform_features_layer()
 
   @tf.function(input_signature=[
-      tf.TensorSpec(shape=(None,1), dtype=tf.string, name='ARRIVAL'),
-      tf.TensorSpec(shape=(None,1), dtype=tf.string, name='DEPARTURE'),
-      tf.TensorSpec(shape=(None,1), dtype=tf.float64, name='DISTANCE'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.string, name='departure'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.string, name='arrival'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.int64, name='adults'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.int64, name='children'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.int64, name='infants'),
+      tf.TensorSpec(shape=(None,1), dtype=tf.string, name='trip_type'),
   ])
-  def serve_rest_fn(x0, x1, x2):
-    
-    # Run inference with ML model.
+  def serve_rest_fn(x0, x1, x2, x3, x4, x5):
+    # Run inference with ML model.    
     transformed_features, _ = _apply_preprocessing({
-                                                  'ARRIVAL': x0, 
-                                                  'DEPARTURE': x1,
-                                                  'DISTANCE': x,
+                                                  'DEPARTURE': x0,
+                                                  'ARRIVAL': x1,
+                                                  'ADULTS': x2,
+                                                  'CHILDREN': x3,
+                                                  'INFANTS': x4,
+                                                  'TRIP_TYPE': x5,
                                                   },
                                                    model.tft_layer)
-    return x0
+    print(transformed_features)
+    return model(transformed_features)
 
   return serve_rest_fn
 
@@ -119,14 +119,14 @@ def _input_fn(file_pattern: List[str],
 
 
 def _build_keras_model() -> tf.keras.Model:
-  """Creates a DNN Keras model for classifying penguin data.
+  """Creates a DNN Keras model for classifying booking data.
 
   Returns:
     A Keras Model.
   """
   # The model below is built with Functional API, please refer to
   # https://www.tensorflow.org/guide/keras/overview for all API options.
-  inputs = [keras.layers.Input(shape=(1,), name=f) for f in _FEATURE_KEYS]
+  inputs = [keras.layers.Input(shape=(1,1), name=f) for f in _FEATURE_KEYS]
   d = keras.layers.concatenate(inputs)
   for _ in range(2):
     d = keras.layers.Dense(8, activation='relu')(d)
@@ -135,8 +135,8 @@ def _build_keras_model() -> tf.keras.Model:
   model = keras.Model(inputs=inputs, outputs=outputs)
   model.compile(
       optimizer=keras.optimizers.Adam(1e-3),
-      loss=tf.keras.losses.BinaryCrossentropy(),
-      metrics=[tf.keras.metrics.Accuracy()])
+      loss=keras.losses.BinaryCrossentropy(),
+      metrics=[keras.metrics.Accuracy()])
 
   model.summary(print_fn=logging.info)
   return model

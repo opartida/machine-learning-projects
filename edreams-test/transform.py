@@ -18,13 +18,34 @@ def preprocessing_fn(inputs):
   # Number of buckets used by tf.transform for encoding each feature.
   _FEATURE_BUCKET_COUNT = 10
 
-  _FEATURE_KEYS = ['DEPARTURE', 'ADULTS', 'CHILDREN', 'INFANTS', 'ARRIVAL']
+  _FEATURE_KEYS = ['DEPARTURE', 
+                   'ADULTS', 
+                   'CHILDREN', 
+                   'INFANTS', 
+                   'ARRIVAL', 
+                   'TRIP_TYPE', 
+                   'TRAIN', 
+                   'GDS', 
+                   'HAUL_TYPE',
+                   'NO_GDS',
+                   'WEBSITE',
+                   'PRODUCT',
+                   'SMS',
+                   'DISTANCE']
 
-  _VOCAB_FEATURE_KEYS = ['DEPARTURE', 'ARRIVAL', 'EXTRA_BAGGAGE']
+  _VOCAB_FEATURE_KEYS = ['DEPARTURE', 
+                         'ARRIVAL', 
+                         'EXTRA_BAGGAGE', 
+                         'TRIP_TYPE', 
+                         'TRAIN', 
+                         'HAUL_TYPE',
+                         'WEBSITE',
+                         'PRODUCT',
+                         'SMS']
 
-  _CATEGORICAL_FEATURE_KEYS = ['ADULTS', 'CHILDREN', 'INFANTS']
+  _CATEGORICAL_FEATURE_KEYS = ['ADULTS', 'CHILDREN', 'INFANTS', 'GDS', 'NO_GDS']
 
-  _DENSE_FLOAT_FEATURE_KEYS = []
+  _DENSE_FLOAT_FEATURE_KEYS = ['DISTANCE']
 
   _BUCKET_FEATURE_KEYS = []
 
@@ -38,7 +59,7 @@ def preprocessing_fn(inputs):
   for key in _VOCAB_FEATURE_KEYS:
     # Build a vocabulary for this feature.
     outputs[key] = tft.compute_and_apply_vocabulary(
-            inputs[key],
+            _fill_in_missing(inputs[key]),
             top_k=_VOCAB_SIZE,
             num_oov_buckets=_OOV_SIZE)
 
@@ -66,8 +87,7 @@ def _fill_in_missing(x):
     return x
 
   default_value = '' if x.dtype == tf.string else 0
-  return tf.squeeze(
-      tf.sparse.to_dense(
-          tf.SparseTensor(x.indices, x.values, [x.dense_shape[0], 1]),
-          default_value),
-      axis=1)
+  print('ENTRO********', x.dense_shape[0])
+  return tf.sparse.to_dense(
+          tf.SparseTensor(x.indices, x.values, (x.dense_shape[0], 1)),
+          default_value)

@@ -25,6 +25,7 @@
 /models
 /__pycache__
 /serving_model
+/deploy/
 
 npm-debug.log*
 yarn-debug.log*
