@@ -1,9 +1,9 @@
 FROM tensorflow/serving
 
 ENV MODEL_BASE_PATH /models
-ENV MODEL_NAME extra_baggage
+ENV MODEL_NAME baggage
 
-COPY model /models
+COPY model/baggage-predictor /models/baggage-predictor
 
 COPY tf_serving_entrypoint.sh /usr/bin/tf_serving_entrypoint.sh
 
