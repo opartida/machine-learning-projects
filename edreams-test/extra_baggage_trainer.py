@@ -162,7 +162,7 @@ def _build_keras_model() -> tf.keras.Model:
   model.compile(
       optimizer=keras.optimizers.Adam(1e-4),
       loss=keras.losses.BinaryCrossentropy(),
-      metrics=['accuracy', tf.keras.metrics.Precision(), tf.keras.metrics.Recall(), tf.keras.metrics.AUC()])
+      metrics=[keras.metrics.Accuracy()])
 
   # model.summary(print_fn=logging.info)
   print(model.summary())
@@ -194,8 +194,6 @@ def run_fn(fn_args: FnArgs):
   model.fit(
       train_dataset,
       steps_per_epoch=fn_args.train_steps,
-      epochs=1,
-      validation_data=eval_dataset,
       validation_steps=fn_args.eval_steps,
       callbacks=[tensorboard_callback])
 
